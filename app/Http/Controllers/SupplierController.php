@@ -42,32 +42,67 @@ class SupplierController extends Controller
         'fname'     =>  'required',
         'mname'     =>  'required',
         'lname'     =>  'required',
-        'email'     =>  'required',
-        'company_name'     =>  'required',
+        'email' =>  'required|email|unique:suppliers',
+        'company_name'     =>  'required|unique:suppliers',
         'street'     =>  'required',
         'city_town'     =>  'required',
         'state_province'     =>  'required',
         'postal_code'     =>  'required',
         'country'     =>  'required',
         'notes'     =>  'required',
-        'phone_no'     =>  'required',
-        'mobile_no'     =>  'required',
-        'fax_no'     =>  'required',
+        'phone_no'     =>  'required|unique:suppliers|max:7',
+        'mobile_no'     =>  'required|unique:suppliers|max:11',
+        'fax_no'     =>  'required|unique:suppliers|max:8',
         'billing_rate'     =>  'required',
         'terms'     =>  'required',
         'opening_balance'     =>  'required',
         'as_of'     =>  'required',
-        'account_no'     =>  'required',
-        'tin_no'     =>  'required',
+        'account_no'     =>  'required|unique:suppliers|max:12',
+        'tin_no'     =>  'required|unique:suppliers|max:8',
         'default_expense_account'     =>  'required',
-        'website'     =>  'required',
+        'website'     =>  'required|unique:suppliers',
         'other'     =>  'required'  
         ]);
+
+        $supplier = new Supplier;
+
+        $supplier->fname = $request->fname;
+        $supplier->mname = $request->mname;
+        $supplier->lname = $request->lname;
+        $supplier->email = $request->email;
+        $supplier->company_name = $request->company_name;
+        $supplier->street = $request->street;
+        $supplier->city_town = $request->city_town;
+        $supplier->state_province = $request->state_province;
+        $supplier->postal_code = $request->postal_code;
+        $supplier->country = $request->country;
+        $supplier->notes = $request->notes;
+        $supplier->phone_no = $request->phone_no;
+        $supplier->mobile_no = $request->mobile_no;
+        $supplier->fax_no = $request->fax_no;
+        $supplier->billing_rate = $request->billing_rate;
+        $supplier->terms = $request->terms;
+        $supplier->opening_balance = $request->opening_balance;
+        $supplier->as_of = $request->as_of;
+        $supplier->account_no = $request->account_no;
+        $supplier->tin_no = $request->tin_no;
+        $supplier->default_expenses_account = $request->default_expenses_account;
+        $supplier->website = $request->website;
+        $supplier->other = $request->other;
+
+        $save_supplier = $supplier->save();
+
+
         $input = $request->all();
 
-        Supplier::create($input);
+        if($save){
+            return redirect('/suppliers')->with('success','Supplier Created successfully');
+        }else{
+            return back()->with('fail','Something went wrong try again.');
+        }
+        
 
-        return redirect('/suppliers')->with('success','Supplier Created successfully');
+        
     }
 
     /**

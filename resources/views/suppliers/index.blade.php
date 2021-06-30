@@ -1,12 +1,27 @@
 @extends('suppliers.layout')
      
 @section('content')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+   
+   <!-- Styles -->
+   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <div class="row">
         <div class="col-lg-12 mt-5">
             <div class="pull-left">
                 <h2>Supplier table</h2>
             </div>
-            
+            <div class="dropdown float-right mb-3 ml-3">
+                    <button class="btn btn-success dropdown-toggle" style="border-radius:20px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/suppliers">Suppliers</a>
+                    <a class="dropdown-item" href="/customers">Customers</a>
+                    <a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a>
+                    <a class="dropdown-item" href="{{route('auth.logout')}}">Logout</a>
+                </div>
+                </div>
             <div class="float-right">
                 <a type="button" class="btn btn-success mb-4" style="border-radius:20px"  href="{{ route('suppliers.create') }} ">New Supplier</a>
             </div>
