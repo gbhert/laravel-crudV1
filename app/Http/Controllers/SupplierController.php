@@ -86,16 +86,16 @@ class SupplierController extends Controller
         $supplier->as_of = $request->as_of;
         $supplier->account_no = $request->account_no;
         $supplier->tin_no = $request->tin_no;
-        $supplier->default_expenses_account = $request->default_expenses_account;
+        $supplier->default_expense_account = $request->default_expense_account;
         $supplier->website = $request->website;
         $supplier->other = $request->other;
 
         $save_supplier = $supplier->save();
 
 
-        $input = $request->all();
+        
 
-        if($save){
+        if($save_supplier){
             return redirect('/suppliers')->with('success','Supplier Created successfully');
         }else{
             return back()->with('fail','Something went wrong try again.');

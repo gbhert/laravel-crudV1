@@ -1,4 +1,4 @@
-@extends('suppliers.layout')
+@extends('customers.layout')
   
 @section('content')
     <!-- Scripts -->
@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-12 mt-5">
         <div class="pull-left">
-            <h2>Supplier Information</h2>
+            <h2>Customer Information</h2>
         </div>
         
     </div>
